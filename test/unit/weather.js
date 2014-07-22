@@ -63,7 +63,7 @@ describe('Weather', function(){
         expect(temp).to.be.ok;
         expect(typeof temp).to.equal('string');
         expect(temp.length).to.be.above(2);
-        console.log(temp);
+        //console.log(temp);
         done();
       });
     });
@@ -74,7 +74,18 @@ describe('Weather', function(){
         expect(temp).to.be.ok;
         expect(typeof temp).to.equal('string');
         expect(temp.length).to.be.above(2);
-        console.log(temp);
+        //console.log(temp);
+        done();
+      });
+    });
+  });
+  describe('.highs', function(){
+    it('should be an array of the 10day high values', function(done){
+      Weather.highs(37204, function(highs){
+        expect(highs).to.be.ok;
+        expect(typeof highs).to.equal('object');
+        expect(highs).to.have.length(10);
+        console.log(highs);
         done();
       });
     });

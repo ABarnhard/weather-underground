@@ -100,6 +100,25 @@ Weather.stdevLow = function(zip, cb){
 
 };
 
+Weather.highs = function(zip, cb){
+  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+
+  request(url, function(error, response, body){
+    debugger;
+    body = JSON.parse(body);
+    var nums = [];
+    var dailyForecasts = body.forecast.simpleforecast.forecastday;
+
+    for(var i = 0; i < dailyForecasts.length; i++){
+      nums.push(parseInt(dailyForecasts[i].high.fahrenheit));
+    }
+
+    cb(nums);
+
+  });
+};
+
+
 // Helper Functions //
 
 function mean(nums){
