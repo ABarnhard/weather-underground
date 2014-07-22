@@ -26,5 +26,22 @@ Weather.low = function(zip, cb){
 
 };
 
+Weather.avgHigh = function(zip, cb){
+  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+
+  request(url, function(error, response, body){
+    debugger;
+    body = JSON.parse(body);
+    var avgHigh = 0;
+    var dailyForecasts = body.forecast.simpleforecast.forecastday;
+    for(var i = 0; i < dailyForecasts.length; i++){
+      avgHigh += parseFloat(dailyForecasts[i].high.fahrenheit);
+    }
+    avgHigh /= dailyForecasts.length;
+
+    cb(avgHigh.toFixed(0) + ' F');
+  });
+
+};
 
 module.exports = Weather;

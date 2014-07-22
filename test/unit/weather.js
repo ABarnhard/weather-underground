@@ -34,6 +34,18 @@ describe('Weather', function(){
       });
     });
   });
+  describe('.avgHigh', function(){
+    it('should average the high temperatures over a ten day period', function(done){
+      Weather.avgHigh( 37204, function(temp){
+        expect(temp).to.be.ok;
+        expect(typeof temp).to.equal('string');
+        expect(temp.length).to.be.above(2);
+        //console.log(temp);
+        done();
+      });
+
+    });
+  });
 });
 
 
