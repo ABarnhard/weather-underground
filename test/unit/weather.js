@@ -46,6 +46,18 @@ describe('Weather', function(){
 
     });
   });
+  describe('.avgLow', function(){
+    it('should average the low temperatures over a ten day period', function(done){
+      Weather.avgLow(37204, function(temp){
+        expect(temp).to.be.ok;
+        expect(typeof temp).to.equal('string');
+        expect(temp.length).to.be.above(2);
+        console.log(temp);
+        done();
+      });
+    });
+  });
+
 });
 
 
