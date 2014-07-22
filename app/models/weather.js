@@ -119,6 +119,42 @@ Weather.highs = function(zip, cb){
 };
 
 
+Weather.lows = function(zip, cb){
+  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+
+  request(url, function(error, response, body){
+    debugger;
+    body = JSON.parse(body);
+    var nums = [];
+    var dailyForecasts = body.forecast.simpleforecast.forecastday;
+
+    for(var i = 0; i < dailyForecasts.length; i++){
+      nums.push(parseInt(dailyForecasts[i].low.fahrenheit));
+    }
+
+    cb(nums);
+
+  });
+};
+
+Weather.deltas = function(zip, cb){
+  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+
+  request(url, function(error, response, body){
+    debugger;
+    body = JSON.parse(body);
+    var temps = [];
+
+    var dailyForecasts = body.forecast.simpleforecast.forecastday;
+
+    for(var i = 0; i < dailyForecasts.length; i++){
+      temps.push(parseInt(dailyForecasts[i].high.fahrenheit) - parseInt(dailyForecasts[i].low.fahrenheit));
+    }
+
+    cb(temps);
+  });
+};
+
 // Helper Functions //
 
 function mean(nums){

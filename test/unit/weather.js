@@ -85,12 +85,34 @@ describe('Weather', function(){
         expect(highs).to.be.ok;
         expect(typeof highs).to.equal('object');
         expect(highs).to.have.length(10);
-        console.log(highs);
+       //console.log(highs);
         done();
       });
     });
   });
-
+  describe('.lows', function(){
+    it('should be an array of the 10day low values', function(done){
+      Weather.lows(37204, function(lows){
+        expect(lows).to.be.ok;
+        expect(typeof lows).to.equal('object');
+        expect(lows).to.have.length(10);
+        //console.log(lows);
+        done();
+      });
+    });
+  });
+  describe('.deltas', function(){
+    it('should be an array of the difference between the 10day highs & lows', function(done){
+      Weather.deltas(37204, function(deltas){
+        expect(deltas).to.be.ok;
+        expect(typeof deltas).to.equal('object');
+        expect(deltas).to.have.length(10);
+        //console.log(deltas);
+        done();
+      });
+    });
+  });
+  
 });
 
 
