@@ -1,3 +1,5 @@
+/* jshint camelcase:false */
+
 'use strict';
 
 var request = require('request');
@@ -5,7 +7,7 @@ var request = require('request');
 function Weather(){}
 
 Weather.high = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -16,7 +18,7 @@ Weather.high = function(zip, cb){
 };
 
 Weather.low = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -27,7 +29,7 @@ Weather.low = function(zip, cb){
 };
 
 Weather.avgHigh = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -45,7 +47,7 @@ Weather.avgHigh = function(zip, cb){
 };
 
 Weather.avgLow = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -63,7 +65,7 @@ Weather.avgLow = function(zip, cb){
 };
 
 Weather.stdevHigh = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -82,7 +84,7 @@ Weather.stdevHigh = function(zip, cb){
 };
 
 Weather.stdevLow = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -101,7 +103,7 @@ Weather.stdevLow = function(zip, cb){
 };
 
 Weather.highs = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -120,7 +122,7 @@ Weather.highs = function(zip, cb){
 
 
 Weather.lows = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -138,7 +140,7 @@ Weather.lows = function(zip, cb){
 };
 
 Weather.deltas = function(zip, cb){
-  var url = 'http://api.wunderground.com/api/048afdd382673bba/forecast10day/q/' + zip + '.json';
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/forecast10day/q/' + zip + '.json';
 
   request(url, function(error, response, body){
     debugger;
@@ -154,6 +156,32 @@ Weather.deltas = function(zip, cb){
     cb(temps);
   });
 };
+
+Weather.moon = function(zip, cb){
+  var url = 'http://api.wunderground.com/api/93c780c5e1dadc42/astronomy/q/' + zip + '.json';
+
+  request(url, function(error, response, body){
+    debugger;
+    body = JSON.parse(body);
+    var percent = parseInt(body.moon_phase.percentIlluminated);
+    var phase;
+
+    if(percent <= 5){
+      phase = 'New';
+    }else if(percent <= 44){
+      phase = 'Crescent';
+    }else if(percent <= 55){
+      phase = 'Quarter';
+    }else if(percent <= 94){
+      phase = 'Gibbous';
+    }else if(percent >= 95){
+      phase = 'Full';
+    }
+
+    cb(phase);
+  });
+};
+
 
 // Helper Functions //
 

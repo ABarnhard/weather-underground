@@ -112,7 +112,17 @@ describe('Weather', function(){
       });
     });
   });
-  
+  describe('.moon', function(){
+    it('should return the current phase of the moon', function(done){
+      Weather.moon(37204, function(phase){
+        expect(phase).to.be.ok;
+        expect(phase).to.be.a('string');
+        console.log(phase);
+        done();
+      });
+    });
+  });
+
 });
 
 
