@@ -18,6 +18,18 @@ describe('Weather', function(){
         expect(temp).to.be.ok;
         expect(typeof temp).to.equal('string');
         expect(temp.length).to.be.above(2);
+        //console.log(temp);
+        done();
+      });
+    });
+  });
+  describe('.low', function(){
+    it('should return the low temp for today for a Zip', function(done){
+      Weather.low(37204, function(temp){
+        expect(temp).to.be.ok;
+        expect(typeof temp).to.equal('string');
+        expect(temp.length).to.be.above(2);
+        //console.log(temp);
         done();
       });
     });
