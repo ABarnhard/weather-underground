@@ -52,6 +52,28 @@ describe('Weather', function(){
         expect(temp).to.be.ok;
         expect(typeof temp).to.equal('string');
         expect(temp.length).to.be.above(2);
+        //console.log(temp);
+        done();
+      });
+    });
+  });
+  describe('.stdevHigh', function(){
+    it('should be the standard deviation of the high temp for ten days', function(done){
+      Weather.stdevHigh(37204, function(temp){
+        expect(temp).to.be.ok;
+        expect(typeof temp).to.equal('string');
+        expect(temp.length).to.be.above(2);
+        console.log(temp);
+        done();
+      });
+    });
+  });
+  describe('.stdevLow', function(){
+    it('should be the standard deviation of the low temp for ten days', function(done){
+      Weather.stdevLow(37204, function(temp){
+        expect(temp).to.be.ok;
+        expect(typeof temp).to.equal('string');
+        expect(temp.length).to.be.above(2);
         console.log(temp);
         done();
       });
